@@ -5,6 +5,18 @@ import { ModeToggle } from "../mode-toggle";
 import { UserButton } from "@clerk/clerk-react";
 import NavList from "../nav-list";
 import { Menu } from "lucide-react";
+import { Dropdown } from "./dropdown";
+
+const options = [
+  {
+    value: "shoe-store",
+    label: "Shoe Store",
+  },
+  {
+    value: "clothing-store",
+    label: "Clothing Store",
+  },
+];
 
 function Navbar() {
   return (
@@ -13,6 +25,11 @@ function Navbar() {
         <Link href={"/dashboard"} className="text-xl font-medium">
           StepForwardStore
         </Link>
+        <Dropdown
+          options={options}
+          placeholder="Search Stores"
+          getSelectedValue={(value) => console.log(value)}
+        />
         <Menu className="lg:hidden w-5 h-5 cursor-pointer" />
         <div className="hidden lg:block">
           <NavList />

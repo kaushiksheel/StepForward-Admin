@@ -7,6 +7,30 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Store {
+  id         String      @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  userId     String
+  products   Product[]
+  categories Category[]
+  features   Feature[]
+  sizes      Size[]
+  colours    Colour[]
+  materials  Material[]
+  billboards Billboard[]
+  createdAt  DateTime    @default(now())
+}
+
+model Billboard {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  label     String
+  imageUrl  String
+  store     Store    @relation(fields: [storeId], references: [id])
+  storeId   String   @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Product {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   name        String
@@ -15,6 +39,8 @@ model Product {
   image       String
   slug        String
   thumbnails  String[]
+  store       Store    @relation(fields: [storeId], references: [id])
+  storeId     String   @db.ObjectId
   isFeatured  Boolean  @default(false)
   isInStock   Boolean  @default(false)
   category    Category @relation(fields: [categoryId], references: [id])
@@ -29,12 +55,15 @@ model Product {
   sizeId      String   @db.ObjectId
   colorId     String   @db.ObjectId
   materialId  String   @db.ObjectId
+  Image       Image[]
 }
 
 model Category {
   id        String    @id @default(auto()) @map("_id") @db.ObjectId
   title     String
   slug      String
+  store     Store     @relation(fields: [storeId], references: [id])
+  storeId   String    @db.ObjectId
   products  Product[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -44,6 +73,8 @@ model Feature {
   id        String    @id @default(auto()) @map("_id") @db.ObjectId
   title     String
   slug      String
+  store     Store     @relation(fields: [storeId], references: [id])
+  storeId   String    @db.ObjectId
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   Product   Product[]
@@ -53,6 +84,8 @@ model Size {
   id        String    @id @default(auto()) @map("_id") @db.ObjectId
   title     String
   slug      String
+  store     Store     @relation(fields: [storeId], references: [id])
+  storeId   String    @db.ObjectId
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   Product   Product[]
@@ -63,6 +96,8 @@ model Colour {
   title        String
   slug         String
   hexColorCode String
+  store        Store     @relation(fields: [storeId], references: [id])
+  storeId      String    @db.ObjectId
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
   Product      Product[]
@@ -72,7 +107,18 @@ model Material {
   id        String    @id @default(auto()) @map("_id") @db.ObjectId
   title     String
   slug      String
+  store     Store     @relation(fields: [storeId], references: [id])
+  storeId   String    @db.ObjectId
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   Product   Product[]
+}
+
+model Image {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  imageUrl  String
+  product   Product  @relation(fields: [productId], references: [id])
+  productId String   @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

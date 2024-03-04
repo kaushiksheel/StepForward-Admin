@@ -39,4 +39,9 @@ export const navItems = [
     title: "Revenue",
     link: "/revenue",
   },
+  {
+    id: 9,
+    title: "Settings",
+    link: "/settings",
+  },
 ];
