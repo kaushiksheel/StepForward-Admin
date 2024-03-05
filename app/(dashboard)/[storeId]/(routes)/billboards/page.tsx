@@ -1,12 +1,27 @@
 import AddButton from "@/components/add-button";
 import SectionHeader from "@/components/section-header";
+import { DataTable } from "@/components/ui/data-table";
+import { db } from "@/lib/db";
 import React from "react";
+import { columns } from "./_components/columns";
+import { format } from "date-fns";
 
-function BillboardsPage({
+async function BillboardsPage({
   params: { storeId },
 }: {
   params: { storeId: string };
 }) {
+  const billboards = await db.billboard.findMany({
+    where: {
+      storeId,
+    },
+  });
+
+  const formattedBillboards = billboards.map(({ id, label, createdAt }) => ({
+    id,
+    label,
+    createdAt: format(createdAt, "MMMM do, yyyy"),
+  }));
   return (
     <>
       <header>
@@ -18,6 +33,14 @@ function BillboardsPage({
           <AddButton path={`/${storeId}/billboards/create-billboard`} />
         </div>
       </header>
+
+      <div className="">
+        <DataTable
+          data={formattedBillboards}
+          columns={columns}
+          searchKey={""}
+        />
+      </div>
     </>
   );
 }

@@ -1,8 +1,7 @@
-"use client";
 import SectionHeader from "@/components/section-header";
-import { CldUploadWidget } from "next-cloudinary";
+
 import React from "react";
-import CreateBillboardForm from "./_components/create-billboard-form";
+import CreateBillboardForm from "../_components/create-billboard-form";
 
 function CreateBillboardPage() {
   return (

@@ -18,6 +18,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { CreateStoreModal } from "../modals/store-modal";
+import { usePathname, useRouter } from "next/navigation";
 
 interface DropdownProps {
   options: {
@@ -35,6 +36,11 @@ export function Dropdown({
 }: DropdownProps) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
+
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const currentPath = pathname.split("/")[2];
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -64,6 +70,7 @@ export function Dropdown({
                   setValue(currentValue === value ? "" : currentValue);
                   setOpen(false);
                   getSelectedValue && getSelectedValue(currentValue);
+                  router.push(`/${option.value}/${currentPath}`);
                 }}
               >
                 <Check

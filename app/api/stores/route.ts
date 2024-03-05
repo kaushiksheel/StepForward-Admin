@@ -13,6 +13,7 @@ export async function POST(req: Request) {
     const existedStore = await db.store.findFirst({
       where: {
         name,
+        userId: userId!,
       },
     });
 

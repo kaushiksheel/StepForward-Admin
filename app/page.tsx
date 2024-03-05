@@ -8,7 +8,6 @@ import React from "react";
 function StorePage() {
   return (
     <>
-      <Navbar />
       <div className="container py-10">
         <header className="">
           <SectionHeader
