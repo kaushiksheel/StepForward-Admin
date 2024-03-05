@@ -40,3 +40,25 @@ export async function POST(
     return new NextResponse("Internal error", { status: 500 });
   }
 }
+
+export async function GET(
+  req: Request,
+  {
+    params: { storeId },
+  }: {
+    params: { storeId: string };
+  }
+) {
+  try {
+    const billboards = await db.billboard.findMany({
+      where: {
+        storeId,
+      },
+    });
+
+    return NextResponse.json(billboards);
+  } catch (error) {
+    console.log("billboard get ");
+    return new NextResponse("Internal error", { status: 500 });
+  }
+}

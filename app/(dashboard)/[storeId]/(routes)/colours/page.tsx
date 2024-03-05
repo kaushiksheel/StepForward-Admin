@@ -5,6 +5,7 @@ import React from "react";
 import { ColourColumn, columns } from "./_components/columns";
 import { format } from "date-fns";
 import AddButton from "@/components/add-button";
+import ApiCard from "@/components/api-card";
 
 async function ColoursPage({
   params: { storeId },
@@ -40,6 +41,12 @@ async function ColoursPage({
       </header>
       <div className="mt-5">
         <DataTable searchKey="name" data={formattedColors} columns={columns} />
+      </div>
+      <div className="">
+        <SectionHeader title="API" description="Api calls for colours" />
+        <div className="mt-5">
+          <ApiCard path="/colours" />
+        </div>
       </div>
     </>
   );

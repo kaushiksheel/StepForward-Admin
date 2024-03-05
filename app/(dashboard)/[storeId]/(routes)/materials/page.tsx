@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import React from "react";
 import { columns } from "./_components/columns";
 import AddButton from "@/components/add-button";
+import ApiCard from "@/components/api-card";
 
 async function Materials({
   params: { storeId },
@@ -40,6 +41,12 @@ async function Materials({
           data={formattedMaterials}
           columns={columns}
         />
+      </div>
+      <div className="">
+        <SectionHeader title="API" description="Api calls for materials" />
+        <div className="mt-5">
+          <ApiCard path="/materials" />
+        </div>
       </div>
     </>
   );

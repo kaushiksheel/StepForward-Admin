@@ -5,6 +5,7 @@ import React from "react";
 import { columns } from "./_components/columns";
 import { format } from "date-fns";
 import AddButton from "@/components/add-button";
+import ApiCard from "@/components/api-card";
 
 async function CategoriesPage({
   params: { storeId },
@@ -42,6 +43,12 @@ async function CategoriesPage({
           data={formattedCategories}
           columns={columns}
         />
+      </div>
+      <div className="">
+        <SectionHeader title="API" description="Api calls for categories" />
+        <div className="mt-5">
+          <ApiCard path="/categories" />
+        </div>
       </div>
     </>
   );

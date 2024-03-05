@@ -5,6 +5,7 @@ import React from "react";
 import { columns } from "./_components/column";
 import { format } from "date-fns";
 import AddButton from "@/components/add-button";
+import ApiCard from "@/components/api-card";
 
 async function SizesPage({
   params: { storeId },
@@ -39,6 +40,12 @@ async function SizesPage({
       </header>
       <div className="mt-5">
         <DataTable searchKey="name" data={formattedSizes} columns={columns} />
+      </div>
+      <div className="">
+        <SectionHeader title="API" description="Api calls for sizes" />
+        <div className="mt-5">
+          <ApiCard path="/sizes" />
+        </div>
       </div>
     </>
   );

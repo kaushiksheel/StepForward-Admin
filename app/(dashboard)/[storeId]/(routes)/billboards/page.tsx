@@ -5,6 +5,7 @@ import { db } from "@/lib/db";
 import React from "react";
 import { columns } from "./_components/columns";
 import { format } from "date-fns";
+import ApiCard from "@/components/api-card";
 
 async function BillboardsPage({
   params: { storeId },
@@ -22,6 +23,7 @@ async function BillboardsPage({
     label,
     createdAt: format(createdAt, "MMMM do, yyyy"),
   }));
+
   return (
     <>
       <header>
@@ -40,6 +42,12 @@ async function BillboardsPage({
           columns={columns}
           searchKey={""}
         />
+      </div>
+      <div className="">
+        <SectionHeader title="API" description="Api calls for billboards" />
+        <div className="mt-5">
+          <ApiCard path="/billboards" />
+        </div>
       </div>
     </>
   );

@@ -6,6 +6,7 @@ import React from "react";
 import { columns } from "./_components/columns";
 import { features } from "process";
 import AddButton from "@/components/add-button";
+import ApiCard from "@/components/api-card";
 
 async function FeaturesPage({
   params: { storeId },
@@ -35,6 +36,12 @@ async function FeaturesPage({
           data={formattedFeatures}
           columns={columns}
         />
+      </div>
+      <div className="">
+        <SectionHeader title="API" description="Api calls for features" />
+        <div className="mt-5">
+          <ApiCard path="/features" />
+        </div>
       </div>
     </>
   );
