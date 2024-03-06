@@ -1,7 +1,7 @@
 import React from "react";
 
 import { db } from "@/lib/db";
-import { Category, Feature, Material } from "@prisma/client";
+import { Feature } from "@prisma/client";
 import UpdateMaterialForm from "../_components/edit-feature-form";
 
 async function MaterialUpdatePage({

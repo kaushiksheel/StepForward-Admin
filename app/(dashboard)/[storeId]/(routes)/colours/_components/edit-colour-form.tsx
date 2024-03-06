@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input";
 import axios, { AxiosError } from "axios";
 import toast from "react-hot-toast";
 import { useParams, useRouter } from "next/navigation";
-import { Category, Colour } from "@prisma/client";
+import { Colour } from "@prisma/client";
 
 const formSchema = z.object({
   title: z.string().min(4, {

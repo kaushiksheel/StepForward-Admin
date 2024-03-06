@@ -7,7 +7,38 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "find:unused": "next-unused"
+  },
+  "next-unused": {
+    "alias": {
+      "@lib/*": [
+        "lib/*"
+      ],
+      "@assets/*": [
+        "assets/*"
+      ],
+    
+      "@components/*": [
+        "components/*"
+      ],
+      "@hooks/*": [
+        "hooks/*"
+      ],
+      "@_components/*": [
+        "_components/*"
+      ]
+    },
+    "debug": true,
+    "include": [
+      "components",
+      "lib",
+      "pages","app/*","hooks","providers","_components","assets","routes"
+    ],
+    "exclude": [],
+    "entrypoints": [
+      "app"
+    ]
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.9",
@@ -46,6 +77,7 @@
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.1.1",
+    "next-unused": "^0.0.6",
     "postcss": "^8",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"

@@ -1,7 +1,6 @@
 "use client";
 
 import axios, { AxiosError } from "axios";
-import { useState } from "react";
 import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
 import { toast } from "react-hot-toast";
 import { useParams, useRouter } from "next/navigation";
@@ -15,8 +14,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { SizesColumn } from "./column";
-// import { useCategoryModal } from "@/hooks/use-category-modal";
-// import { AlertModal } from "@/components/modals/alert-modal";
 
 interface CellActionProps {
   data: SizesColumn;
@@ -25,8 +22,6 @@ interface CellActionProps {
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   const router = useRouter();
   const { storeId } = useParams();
-  const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const handleDelete = async () => {
     try {

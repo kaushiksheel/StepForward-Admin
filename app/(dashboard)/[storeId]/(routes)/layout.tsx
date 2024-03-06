@@ -1,5 +1,4 @@
 import MainNav from "@/components/main-nav";
-import Navbar from "@/components/ui/navbar";
 
 import React, { ReactNode } from "react";
 

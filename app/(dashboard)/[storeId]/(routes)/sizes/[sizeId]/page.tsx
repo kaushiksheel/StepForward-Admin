@@ -1,7 +1,7 @@
 import React from "react";
 
 import { db } from "@/lib/db";
-import { Category, Size } from "@prisma/client";
+import { Size } from "@prisma/client";
 import UpdateSizeForm from "../_components/edit-size-form";
 
 async function SizeIdPage({

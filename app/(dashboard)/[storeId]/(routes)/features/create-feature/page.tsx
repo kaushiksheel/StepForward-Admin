@@ -1,6 +1,5 @@
 import SectionHeader from "@/components/section-header";
 import React from "react";
-import CreateMaterialForm from "../_components/create-feature-form";
 import CreateFeatureForm from "../_components/create-feature-form";
 
 function CreateMaterialPage() {

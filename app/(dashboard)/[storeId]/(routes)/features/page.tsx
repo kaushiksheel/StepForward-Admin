@@ -4,7 +4,6 @@ import { db } from "@/lib/db";
 import { format } from "date-fns";
 import React from "react";
 import { columns } from "./_components/columns";
-import { features } from "process";
 import AddButton from "@/components/add-button";
 import ApiCard from "@/components/api-card";
 
