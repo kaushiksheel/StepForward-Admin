@@ -28,7 +28,9 @@ function ApiCard({ path }: { path: string }) {
       </CardHeader>
       <CardContent>
         <div className="flex-col flex sm:flex-row sm:items-center sm:justify-between">
-          <p className="bg-gray-200 dark:bg-gray-800 px-2">{apiLink}</p>
+          <p className="bg-gray-200 dark:bg-gray-800 px-2 truncate">
+            {apiLink}
+          </p>
           <Button onClick={handleClick} size="sm" variant="outline">
             <Copy className="w-5 h-5" />
           </Button>

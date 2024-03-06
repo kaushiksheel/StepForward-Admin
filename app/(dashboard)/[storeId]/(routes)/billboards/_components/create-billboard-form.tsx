@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -18,6 +18,7 @@ import axios, { AxiosError } from "axios";
 import toast from "react-hot-toast";
 import { useParams, useRouter } from "next/navigation";
 import ImageUpload from "@/components/image-upload";
+import Spinner from "@/components/spinner";
 
 const formSchema = z.object({
   label: z.string().min(4, {
@@ -28,6 +29,7 @@ const formSchema = z.object({
 
 function CreateBillboardForm() {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const { storeId } = useParams();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -38,14 +40,17 @@ function CreateBillboardForm() {
   });
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
+    setLoading(true);
     try {
       await axios.post(`/api/${storeId}/billboards`, {
         data,
       });
+      setLoading(false);
       toast.success("Billboard created successfully");
       router.push(`/${storeId}/billboards`);
     } catch (error) {
       if (error instanceof AxiosError) {
+        setLoading(false);
         toast.error(error.response?.data);
       }
     }
@@ -87,7 +92,7 @@ function CreateBillboardForm() {
           />
         </div>
         <Button type="submit" className="mt-3">
-          Create
+          {loading ? <Spinner /> : "Create"}
         </Button>
       </form>
     </Form>

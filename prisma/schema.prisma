@@ -55,7 +55,6 @@ model Product {
   sizeId      String   @db.ObjectId
   colorId     String   @db.ObjectId
   materialId  String   @db.ObjectId
-  Image       Image[]
 }
 
 model Category {
@@ -112,13 +111,4 @@ model Material {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   Product   Product[]
-}
-
-model Image {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  imageUrl  String
-  product   Product  @relation(fields: [productId], references: [id])
-  productId String   @db.ObjectId
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }

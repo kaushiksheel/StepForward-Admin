@@ -15,20 +15,25 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { ReactNode, useState } from "react";
 import toast from "react-hot-toast";
+import Spinner from "../spinner";
 
 export function CreateStoreModal({ children }: { children: ReactNode }) {
   const [name, setName] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const handleCreateStore = async () => {
+    setLoading(true);
     try {
       const store = await axios.post("/api/stores", {
         data: {
           name,
         },
       });
+      setLoading(false);
       toast.success("Store created successfully");
       router.push(`/${store.data.id}/billboards`);
     } catch (error) {
+      setLoading(false);
       console.error(error);
       toast.error("Failed to create store");
     }
@@ -43,6 +48,7 @@ export function CreateStoreModal({ children }: { children: ReactNode }) {
             Create a new store to start selling your products.
           </DialogDescription>
         </DialogHeader>
+
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="name" className="text-right">
@@ -59,7 +65,7 @@ export function CreateStoreModal({ children }: { children: ReactNode }) {
         </div>
         <DialogFooter>
           <Button onClick={handleCreateStore} type="submit">
-            Create
+            {loading ? <Spinner /> : "Create"}
           </Button>
         </DialogFooter>
       </DialogContent>

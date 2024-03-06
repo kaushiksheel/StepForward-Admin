@@ -11,25 +11,21 @@ function NavList() {
     return selectedLink === `${pathname}`;
   };
 
-  return (
-    <ul className="flex items-center space-x-3">
-      {navItems.map(({ id, link, title }) => (
-        <li key={id}>
-          <Link
-            href={`/${storeId}${link}`}
-            className={cn(
-              "text-sm ",
-              isMatched(`/${storeId}${link}`)
-                ? "text-primary font-medium"
-                : "text-gray-500 font-normal"
-            )}
-          >
-            {title}
-          </Link>
-        </li>
-      ))}
-    </ul>
-  );
+  return navItems.map(({ id, link, title }) => (
+    <li key={id}>
+      <Link
+        href={`/${storeId}${link}`}
+        className={cn(
+          "text-sm ",
+          isMatched(`/${storeId}${link}`)
+            ? "text-primary font-medium"
+            : "text-gray-500 font-normal"
+        )}
+      >
+        {title}
+      </Link>
+    </li>
+  ));
 }
 
 export default NavList;

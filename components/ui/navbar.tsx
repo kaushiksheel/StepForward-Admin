@@ -7,9 +7,10 @@ import NavList from "../nav-list";
 import { Menu } from "lucide-react";
 import { Dropdown } from "./dropdown";
 import { Store } from "@prisma/client";
+import { MobileNav } from "../mobile-nav";
 
 function Navbar({ stores }: { stores: Store[] }) {
-  const options = stores.map(({ name, id }) => ({
+  const options = stores?.map(({ name, id }) => ({
     value: id,
     label: name,
   }));
@@ -17,18 +18,18 @@ function Navbar({ stores }: { stores: Store[] }) {
   return (
     <nav className="container py-3 flex justify-between">
       <div className="flex items-center space-x-4">
-        <Link href={"/dashboard"} className="text-xl font-medium">
+        <Link href={"/"} className="text-xl font-medium">
           StepForwardStore
         </Link>
-        <Dropdown
-          options={options}
-          placeholder="Search Stores"
-          getSelectedValue={(value) => console.log(value)}
-        />
-        <Menu className="lg:hidden w-5 h-5 cursor-pointer" />
-        <div className="hidden lg:block">
-          <NavList />
+        <div className=" hidden lg:block">
+          <Dropdown options={options} placeholder="Search stores" />
         </div>
+        <MobileNav options={options}>
+          <Menu className="lg:hidden w-5 h-5 cursor-pointer" />
+        </MobileNav>
+        <ul className="hidden lg:flex items-center space-x-3 ">
+          <NavList />
+        </ul>
       </div>
       <div className="flex items-center space-x-3">
         <ModeToggle />
