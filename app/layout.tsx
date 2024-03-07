@@ -4,6 +4,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ToastProvider } from "@/providers/toast-provider";
+import Head from "next/head";
 
 const inter = Nunito_Sans({
   subsets: ["latin"],

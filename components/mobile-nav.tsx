@@ -12,7 +12,7 @@ export function MobileNav({
   return (
     <Sheet>
       <SheetTrigger asChild>{children}</SheetTrigger>
-      <SheetContent>
+      <SheetContent side="left">
         <div className="flex justify-center">
           <ul className="flex flex-col items-center gap-y-10">
             <Dropdown options={options} placeholder="Search stores" />
