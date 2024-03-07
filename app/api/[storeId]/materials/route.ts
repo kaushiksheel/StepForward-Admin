@@ -46,10 +46,6 @@ export async function GET(
   { params: { storeId } }: { params: { storeId: string } }
 ) {
   try {
-    const { userId } = auth();
-    if (!userId) {
-      return new NextResponse("Unauthorized", { status: 403 });
-    }
     const materials = await db.material.findMany({
       where: {
         storeId,

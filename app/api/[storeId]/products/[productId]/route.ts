@@ -145,10 +145,6 @@ export async function DELETE(
   }: { params: { storeId: string; productId: string } }
 ) {
   try {
-    const { userId } = auth();
-    if (!userId) {
-      return new NextResponse("Unauthorized", { status: 401 });
-    }
     await db.product.delete({
       where: {
         id: productId,
