@@ -25,6 +25,8 @@ export async function POST(
         materialId,
       },
     } = await req.json();
+
+    console.log(thumbnails);
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
@@ -46,7 +48,9 @@ export async function POST(
         price,
         description,
         image,
-        thumbnails,
+        thumbnails: thumbnails?.map(
+          (thumbnail: { imageUrl: string }) => thumbnail.imageUrl
+        ),
         isFeatured,
         isInStock,
         storeId,

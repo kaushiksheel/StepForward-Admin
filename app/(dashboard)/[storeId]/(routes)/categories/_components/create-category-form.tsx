@@ -17,12 +17,16 @@ import { Input } from "@/components/ui/input";
 import axios, { AxiosError } from "axios";
 import toast from "react-hot-toast";
 import { useParams, useRouter } from "next/navigation";
+import ImageUpload from "@/components/image-upload";
 
 const formSchema = z.object({
   title: z.string().min(4, {
     message: "Title must be at least 4 characters.",
   }),
   slug: z.string().min(3),
+  imgSrc: z.string().min(1, {
+    message: "Image is required",
+  }),
 });
 
 function CreateCategoryForm() {
@@ -33,6 +37,7 @@ function CreateCategoryForm() {
     defaultValues: {
       title: "",
       slug: "",
+      imgSrc: "",
     },
   });
 
@@ -74,6 +79,24 @@ function CreateCategoryForm() {
                 <FormLabel>Slug</FormLabel>
                 <FormControl>
                   <Input placeholder="Add Slug" {...field} />
+                </FormControl>
+
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="imgSrc"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Category Image</FormLabel>
+                <FormControl>
+                  <ImageUpload
+                    value={field.value ? [field.value] : []}
+                    onChange={(url) => field.onChange(url)}
+                    onRemove={() => field.onChange("")}
+                  />
                 </FormControl>
 
                 <FormMessage />

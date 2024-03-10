@@ -61,6 +61,7 @@ model Category {
   id        String    @id @default(auto()) @map("_id") @db.ObjectId
   title     String
   slug      String
+  img       String
   store     Store     @relation(fields: [storeId], references: [id])
   storeId   String    @db.ObjectId
   products  Product[]

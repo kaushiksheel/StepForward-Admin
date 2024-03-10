@@ -13,7 +13,7 @@ export async function POST(
   try {
     const { userId } = auth();
     const {
-      data: { slug, title },
+      data: { slug, title, imgSrc },
     } = await req.json();
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 403 });
@@ -34,6 +34,7 @@ export async function POST(
         title,
         slug,
         storeId,
+        img: imgSrc,
       },
     });
 

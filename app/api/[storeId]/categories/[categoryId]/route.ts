@@ -10,7 +10,7 @@ export async function PATCH(
   try {
     const { userId } = auth();
     const {
-      data: { slug, title },
+      data: { slug, title, imgSrc },
     } = await req.json();
 
     if (!userId) {
@@ -25,6 +25,7 @@ export async function PATCH(
       data: {
         title,
         slug,
+        img: imgSrc,
       },
     });
 

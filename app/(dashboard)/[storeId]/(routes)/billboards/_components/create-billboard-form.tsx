@@ -58,7 +58,7 @@ function CreateBillboardForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="">
-        <div className="grid grid-cols-2 gap-7">
+        <div className="grid grid-cols-2 gap-7 overflow-x-auto w-full">
           <FormField
             control={form.control}
             name="label"
