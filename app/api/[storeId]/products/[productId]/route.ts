@@ -66,8 +66,8 @@ export async function PATCH(
 export async function GET(
   req: Request,
   {
-    params: { storeId, productId },
-  }: { params: { storeId: string; productId: string } }
+    params: { storeId, shoeSlug },
+  }: { params: { storeId: string; shoeSlug: string } }
 ) {
   try {
     const { userId } = auth();
@@ -76,7 +76,7 @@ export async function GET(
     }
     const product = await db.product.findFirst({
       where: {
-        id: productId,
+        slug: shoeSlug,
         storeId,
       },
       select: {
