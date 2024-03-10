@@ -66,8 +66,8 @@ export async function PATCH(
 export async function GET(
   req: Request,
   {
-    params: { storeId, shoeSlug },
-  }: { params: { storeId: string; shoeSlug: string } }
+    params: { storeId, productId: shoeSlug },
+  }: { params: { storeId: string; productId: string } }
 ) {
   try {
     const product = await db.product.findFirst({
