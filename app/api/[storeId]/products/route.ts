@@ -7,7 +7,7 @@ export async function POST(
   { params: { storeId } }: { params: { storeId: string } }
 ) {
   try {
-    const { userId } = auth();
+    // const { userId } = auth();
     const {
       data: {
         name,
@@ -26,10 +26,10 @@ export async function POST(
       },
     } = await req.json();
 
-    console.log(thumbnails);
-    if (!userId) {
-      return new NextResponse("Unauthorized", { status: 401 });
-    }
+    // console.log(thumbnails);
+    // if (!userId) {
+    //   return new NextResponse("Unauthorized", { status: 401 });
+    // }
 
     const existedProduct = await db.product.findFirst({
       where: {
